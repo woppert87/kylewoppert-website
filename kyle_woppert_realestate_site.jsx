@@ -1,108 +1,134 @@
-import { useState } from 'react';
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kyle Woppert | Red Sky Realty</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') no-repeat center center fixed;
+      background-size: cover;
+    }
+    header {
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    nav {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+    .section {
+      margin-bottom: 2rem;
+    }
+    .headshot {
+      width: 150px;
+      border-radius: 100px;
+      margin-bottom: 1rem;
+    }
+    footer {
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+    }
+    form label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    .agent-contact {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin: 0.5rem 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Kyle Woppert</h1>
+    <p>SRQ International Realty | Red Sky Realty</p>
+  </header>
 
-export default function HomePage() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  <nav>
+    <a href="#about">About</a>
+    <a href="#listings">Listings</a>
+    <a href="#buyers">First-Time Buyers</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  <div class="container">
+    <section class="section" id="about">
+      <img src="/headshot.png" alt="Kyle Woppert Headshot" class="headshot" />
+      <h2>About Me</h2>
+      <p>I'm Kyle Woppert, a licensed Realtor® in Sarasota and Manatee County with SRQ International Realty. I specialize in identifying multiunit investment properties and finding dream homes for first-time homebuyers. With years of public record sales and expert local knowledge, I bring confidence and clarity to every transaction.</p>
+    </section>
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    await fetch("https://formspree.io/f/your-form-id", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    });
-    alert("Message sent!");
-  };
+    <section class="section" id="listings">
+      <h2>Active Listings</h2>
+      <iframe src="https://stellar.mlsmatrix.com/Matrix/public/IDX.aspx?idx=593e6f28"></iframe>
+    </section>
 
-  return (
-    <div className="p-6 space-y-10">
-      <section className="text-center">
-        <h1 className="text-4xl font-bold">Kyle Woppert</h1>
-        <p className="text-lg">SRQ International Realty - Sarasota, FL</p>
-        <img src="/headshot.png" alt="Kyle Woppert" className="mx-auto rounded-full w-48 h-48 mt-4" />
-      </section>
+    <section class="section" id="buyers">
+      <h2>First-Time Buyer Help</h2>
+      <p>Whether you're just starting to dream or ready to buy, I guide you through every step of the process. I make home buying clear, stress-free, and even exciting. Let’s find your first dream home together.</p>
+    </section>
 
-      <section className="grid md:grid-cols-2 gap-6">
-        <Card>
-          <CardContent className="p-4">
-            <h2 className="text-xl font-semibold">Multi-Unit Investment Properties</h2>
-            <p>Explore income-producing properties perfect for investors in Sarasota and Manatee County.</p>
-          </CardContent>
-        </Card>
+    <section class="section" id="gallery">
+      <h2>Property Gallery</h2>
+      <p>(Photos coming soon!)</p>
+    </section>
 
-        <Card>
-          <CardContent className="p-4">
-            <h2 className="text-xl font-semibold">First-Time Homebuyer Opportunities</h2>
-            <p>Discover affordable dream homes tailored to first-time buyers and families.</p>
-          </CardContent>
-        </Card>
-      </section>
+    <section class="section" id="contact">
+      <h2>Contact Me</h2>
+      <p class="agent-contact">📞 941-254-3288</p>
+      <p class="agent-contact">📧 <a href="mailto:kylewoppert@gmail.com">kylewoppert@gmail.com</a></p>
+      <form action="mailto:kylewoppert@gmail.com" method="post" enctype="text/plain">
+        <label>Name:<input type="text" name="name" required /></label>
+        <label>Email:<input type="email" name="email" required /></label>
+        <label>Message:<textarea name="message" rows="5" required></textarea></label>
+        <input type="submit" value="Send Message" />
+      </form>
+    </section>
+  </div>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-2">Browse Active Listings</h2>
-        <iframe
-          src="https://stellar.mlsmatrix.com/Matrix/public/IDX.aspx?idx=593e6f28"
-          width="100%"
-          height="600px"
-          frameBorder="0"
-        />
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-semibold mb-2">Photo Gallery</h2>
-        <p>Coming soon – upload featured property photos.</p>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-semibold mb-2">About Kyle</h2>
-        <p>
-          Kyle Woppert is a Sarasota-based realtor with SRQ International Realty. Specializing in investment
-          properties and helping families find their first home, Kyle is known for fast closings, cash deals,
-          and expert tenant handling. Licensed in Florida, Kyle has publicly sold properties in Sarasota and
-          Manatee counties and is committed to guiding his clients every step of the way.
-        </p>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-semibold mb-2">Contact Kyle</h2>
-        <form onSubmit={handleSubmit} className="space-y-4 max-w-lg mx-auto">
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            className="w-full p-2 border rounded"
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            className="w-full p-2 border rounded"
-            onChange={handleChange}
-            required
-          />
-          <textarea
-            name="message"
-            placeholder="Your Message"
-            className="w-full p-2 border rounded"
-            rows="4"
-            onChange={handleChange}
-            required
-          />
-          <Button type="submit">Send Message</Button>
-        </form>
-        <div className="mt-4 text-center">
-          <p>📞 <strong>941-254-3288</strong></p>
-          <p>📧 <strong>KyleWoppert@gmail.com</strong></p>
-        </div>
-      </section>
-    </div>
-  );
-}
+  <footer>
+    <p>&copy; 2025 Kyle Woppert | Red Sky Realty</p>
+  </footer>
+</body>
+</html>
