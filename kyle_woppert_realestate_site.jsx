@@ -1,98 +1,107 @@
-import React from "react";
+import { useState } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Mail, Phone } from "lucide-react";
 
-export default function KyleWoppertRealEstate() {
+export default function HomePage() {
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await fetch("https://formspree.io/f/your-form-id", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+    alert("Message sent!");
+  };
+
   return (
-    <div className="max-w-6xl mx-auto p-4 space-y-10">
-      <header className="text-center space-y-2">
-        <h1 className="text-4xl font-bold">Kyle Woppert - SRQ International Realty</h1>
-        <p className="text-lg text-gray-600">
-          Specializing in Multi-Unit Investment Properties & First-Time Homebuyer Dreams
-        </p>
-      </header>
-
-      <section className="grid md:grid-cols-2 gap-6 items-center">
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold">Welcome</h2>
-          <p>
-            As a Sarasota native and experienced realtor with SRQ International Realty, I
-            specialize in helping clients find profitable multi-unit investment properties
-            and guiding first-time homebuyers to their dream homes in Sarasota and Manatee
-            County. With a passion for real estate and a personal touch, I’m here to make
-            your journey smooth and successful.
-          </p>
-        </div>
-        <div className="aspect-square bg-gray-200 rounded-2xl shadow-inner flex items-center justify-center">
-          <span className="text-gray-500">[Insert Headshot Here]</span>
-        </div>
+    <div className="p-6 space-y-10">
+      <section className="text-center">
+        <h1 className="text-4xl font-bold">Kyle Woppert</h1>
+        <p className="text-lg">SRQ International Realty - Sarasota, FL</p>
+        <img src="/headshot.png" alt="Kyle Woppert" className="mx-auto rounded-full w-48 h-48 mt-4" />
       </section>
 
-      <section className="space-y-4">
-        <h2 className="text-2xl font-semibold">Featured Properties</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <Card>
-            <CardContent className="p-4">
-              <h3 className="font-bold text-xl">Downtown Sarasota Triplex</h3>
-              <p className="text-gray-600">Great ROI, fully occupied, walk to Bayfront.</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4">
-              <h3 className="font-bold text-xl">Bradenton Duplex</h3>
-              <p className="text-gray-600">Perfect for new investors, strong rental history.</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4">
-              <h3 className="font-bold text-xl">Starter Home in Lakewood Ranch</h3>
-              <p className="text-gray-600">3BR/2BA, family-friendly community, move-in ready.</p>
-            </CardContent>
-          </Card>
-        </div>
+      <section className="grid md:grid-cols-2 gap-6">
+        <Card>
+          <CardContent className="p-4">
+            <h2 className="text-xl font-semibold">Multi-Unit Investment Properties</h2>
+            <p>Explore income-producing properties perfect for investors in Sarasota and Manatee County.</p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent className="p-4">
+            <h2 className="text-xl font-semibold">First-Time Homebuyer Opportunities</h2>
+            <p>Discover affordable dream homes tailored to first-time buyers and families.</p>
+          </CardContent>
+        </Card>
       </section>
 
-      <section className="space-y-4">
-        <h2 className="text-2xl font-semibold">Sales History</h2>
+      <section>
+        <h2 className="text-2xl font-semibold mb-2">Browse Active Listings</h2>
+        <iframe
+          src="https://stellar.mlsmatrix.com/Matrix/public/IDX.aspx?idx=593e6f28"
+          width="100%"
+          height="600px"
+          frameBorder="0"
+        />
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-2">Photo Gallery</h2>
+        <p>Coming soon – upload featured property photos.</p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-2">About Kyle</h2>
         <p>
-          Since entering real estate, I've proudly closed numerous transactions across Sarasota
-          and Manatee counties. Highlights include the sale of a 6-unit income property in
-          Gulf Gate, multiple first-time homebuyer successes in Palmetto and Parrish, and
-          helping investors acquire off-market duplexes in Bradenton. My mission is to
-          maximize your investment or find the perfect place to call home.
+          Kyle Woppert is a Sarasota-based realtor with SRQ International Realty. Specializing in investment
+          properties and helping families find their first home, Kyle is known for fast closings, cash deals,
+          and expert tenant handling. Licensed in Florida, Kyle has publicly sold properties in Sarasota and
+          Manatee counties and is committed to guiding his clients every step of the way.
         </p>
       </section>
 
-      <section className="space-y-4">
-        <h2 className="text-2xl font-semibold">Gallery</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="bg-gray-200 rounded-xl aspect-square flex items-center justify-center">
-            <span className="text-gray-500">[Photo 1]</span>
-          </div>
-          <div className="bg-gray-200 rounded-xl aspect-square flex items-center justify-center">
-            <span className="text-gray-500">[Photo 2]</span>
-          </div>
-          <div className="bg-gray-200 rounded-xl aspect-square flex items-center justify-center">
-            <span className="text-gray-500">[Photo 3]</span>
-          </div>
-          <div className="bg-gray-200 rounded-xl aspect-square flex items-center justify-center">
-            <span className="text-gray-500">[Photo 4]</span>
-          </div>
+      <section>
+        <h2 className="text-2xl font-semibold mb-2">Contact Kyle</h2>
+        <form onSubmit={handleSubmit} className="space-y-4 max-w-lg mx-auto">
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            className="w-full p-2 border rounded"
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            className="w-full p-2 border rounded"
+            onChange={handleChange}
+            required
+          />
+          <textarea
+            name="message"
+            placeholder="Your Message"
+            className="w-full p-2 border rounded"
+            rows="4"
+            onChange={handleChange}
+            required
+          />
+          <Button type="submit">Send Message</Button>
+        </form>
+        <div className="mt-4 text-center">
+          <p>📞 <strong>941-254-3288</strong></p>
+          <p>📧 <strong>KyleWoppert@gmail.com</strong></p>
         </div>
-      </section>
-
-      <section className="space-y-4">
-        <h2 className="text-2xl font-semibold">Contact Kyle</h2>
-        <div className="space-y-2">
-          <p className="flex items-center gap-2 text-gray-700">
-            <Phone className="w-5 h-5" /> 941-254-3288
-          </p>
-          <p className="flex items-center gap-2 text-gray-700">
-            <Mail className="w-5 h-5" /> KyleWoppert@gmail.com
-          </p>
-        </div>
-        <Button className="mt-2">Send a Message</Button>
       </section>
     </div>
   );
